@@ -1,9 +1,0 @@
-com\zhou\pojo\Address.class
-com\zhou\pojo\Provider.class
-com\zhou\dao\UserDao.class
-com\zhou\service\user\UserService.class
-com\zhou\pojo\Bill.class
-com\zhou\pojo\User.class
-com\zhou\service\user\UserServiceImpl.class
-com\zhou\controller\login\LoginController.class
-com\zhou\pojo\Role.class
