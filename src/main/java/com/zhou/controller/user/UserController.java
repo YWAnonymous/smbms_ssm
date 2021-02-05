@@ -7,6 +7,8 @@ import com.zhou.pojo.Role;
 import com.zhou.pojo.User;
 import com.zhou.service.role.RoleService;
 import com.zhou.service.user.UserService;
+import com.zhou.util.Constants;
+import com.zhou.util.PageSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,7 @@ public class UserController {
                               @RequestParam(value = "pageIndex",required = false) String pageIndex) {
 
         ModelAndView mv = new ModelAndView();
+        //============准备数据===================
         String queryname = null;
         if(!StringUtils.isNullOrEmpty(temp)){
             queryname = temp;
@@ -41,7 +44,10 @@ public class UserController {
         }
 
         System.out.println("=======method="+method+"=====queryname="+queryname+"=====queryUserRole="+queryUserRole);
-        int pageSize = 5;
+        // 查询用户总条数
+        int totalCount = userService.getUserCount(queryname, queryUserRole);
+        //=================分页==============================
+        int pageSize = Constants.PageSize;
         //当前页码
         int currentPageNo = 1;
         if(pageIndex != null){
@@ -51,17 +57,20 @@ public class UserController {
                 mv.setViewName("forward:/error.jsp");
             }
         }
+        PageSupport pages = new PageSupport();
+        pages.setCurrentPageNo(currentPageNo);
+        pages.setPageSize(pageSize);
+        pages.setTotalCount(totalCount);
+        int totalPageCount = pages.getTotalPageCount();
 
-        List<User> users = userService.getUserList(queryname, queryUserRole);
-        PageInfo<User> page = new PageInfo<User>(users);
-        List<User> userList = page.getList();
-        long totalCount = page.getTotal();
+        List<User> userList = userService.getUserList(queryname, queryUserRole,currentPageNo,pageSize);
 
-        List<Role> roleList = roleService.getRoleList();
 
-        //mv.addObject("totalPageCount", totalPageCount);
+        mv.addObject("totalPageCount", totalPageCount);
         mv.addObject("totalCount", totalCount);
         mv.addObject("currentPageNo", currentPageNo);
+
+        List<Role> roleList = roleService.getRoleList();
         mv.addObject("queryUserName",queryname);
         mv.addObject("queryUserRole",queryUserRole);
         mv.addObject("userList",userList);

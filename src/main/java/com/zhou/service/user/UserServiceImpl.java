@@ -17,10 +17,13 @@ public class UserServiceImpl implements UserService {
         return userDao.getLoginUser(userCode);
     }
 
-    public List<User> getUserList(String userCode, int userRole) {
+    public List<User> getUserList(String userCode, int userRole,int currentPageNo, int pageSize) {
+        int aa = (currentPageNo-1)*pageSize;
+        return userDao.getUserList(userCode,userRole,aa,pageSize);
+    }
 
-
-
-        return userDao.getUserList(userCode,userRole);
+    @Override
+    public int getUserCount(String userCode, int userRole) {
+        return userDao.getUserCount(userCode,userRole);
     }
 }

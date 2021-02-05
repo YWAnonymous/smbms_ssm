@@ -28,10 +28,26 @@
         <trim prefix="WHERE" prefixOverrides="AND |OR">
             and u.userRole = r.id
             <if test="userCode != null and userCode != ''">
-                and u.userCode = #{userCode}
+                and u.userCode like CONCAT("%",#{userCode},"%")
             </if>
             <if test="userRole != 0">
-                and u.userRole = #{userRole}
+                and u.userRole like CONCAT("%",#{userRole},"%")
+            </if>
+            limit #{currentPageNo},#{pageSize}
+        </trim>
+    </select>
+
+
+    <select id="getUserCount" resultType="_int">
+        select count(1) as count
+        from smbms_user u,smbms_role r
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            and u.userRole = r.id
+            <if test="userCode != null and userCode != ''">
+                and u.userCode like CONCAT("%",#{userCode},"%")
+            </if>
+            <if test="userRole != 0">
+                and u.userRole like CONCAT("%",#{userRole},"%")
             </if>
         </trim>
     </select>
