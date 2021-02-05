@@ -22,3 +22,9 @@ controller中获取数据使用@RequestParam获取url拼接的数据
 ```properties
 url=jdbc:mysql://localhost:3306/smbms?useSSL=true&useUnicode=true&characterEncoding=utf8
 ```
+
+### 上传文件
+```markdown
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary8US3dx8lueWvf2Vi
+使用@RequestParam("file") MultipartFile file获取前端上送的文件
+```

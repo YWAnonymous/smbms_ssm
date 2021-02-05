@@ -24,7 +24,6 @@ public class User {
     private long modifyBy;     //更新者
     private Date modifyDate;   //更新时间
     private String userImage;  //图片路径
-    private MultipartFile file;
 
     private Integer age;//年龄
 
@@ -44,7 +43,7 @@ public class User {
 		/*long time = System.currentTimeMillis()-birthday.getTime();
 		Integer age = Long.valueOf(time/365/24/60/60/1000).IntegerValue();*/
         Date date = new Date();
-        Integer age = date.getYear()-birthday.getYear();
+        Integer age = date.getYear() - birthday.getYear();
         return age;
     }
 
@@ -61,9 +60,6 @@ public class User {
     public void setUserRoleName(String userRoleName) {
         this.userRoleName = userRoleName;
     }
-
-
-
 
 
     public long getId() {
@@ -178,11 +174,4 @@ public class User {
         this.userImage = userImage;
     }
 
-    public MultipartFile getFile() {
-        return file;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
 }

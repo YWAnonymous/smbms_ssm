@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -116,18 +117,13 @@ public class UserController {
 
 
     @RequestMapping("/adduser.do")
-    public void addUser(User user, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, ServletException {
+    public void addUser(User user, HttpServletRequest request, HttpServletResponse response, Model model,
+                        @RequestParam("file") MultipartFile file) throws IOException, ServletException {
 
 
         System.out.println("========user========"+user);
-        System.out.println("========file========="+user.getFile());
+        System.out.println("========file========="+file);
 
-       /* try {
-            user.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(birthday));
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
         //保存数据库的路径
         String sqlPath = null;
         //定义文件保存的本地路径
@@ -142,18 +138,18 @@ public class UserController {
         System.out.println("上传文件保存地址："+realPath);
         //定义 文件名
         String filename=null;
-        if(!user.getFile().isEmpty()){
+        if(!file.isEmpty()){
             //生成uuid作为文件名称
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
             //获得文件类型（可以判断如果不是图片，禁止上传）
-            String contentType=user.getFile().getContentType();
+            String contentType=file.getContentType();
             //获得文件后缀名
             String suffixName=contentType.substring(contentType.indexOf("/")+1);
             //得到 文件名
             filename=uuid+"."+suffixName;
             System.out.println(filename);
             //文件保存路径
-            user.getFile().transferTo(new File(realPath+"/"+filename));
+            file.transferTo(new File(realPath+"/"+filename));
         }
         //把图片的相对路径保存至数据库
         sqlPath = "/upload/"+filename;
