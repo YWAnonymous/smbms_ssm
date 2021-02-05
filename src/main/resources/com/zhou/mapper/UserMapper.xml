@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhou.dao.UserDao">
+<mapper namespace="com.zhou.dao.user.UserDao">
 
     <select id="getLoginUser" resultType="user">
         select * from smbms.smbms_user where userCode = #{userCode}
     </select>
 
-
-    <select id="getUserList" resultType="user">
-        select * from smbms_user u, smbms_role r
+    <resultMap id="UserList" type="user">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="userCode" jdbcType="VARCHAR" property="userCode"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="userPassword" jdbcType="VARCHAR" property="userPassword"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="birthday" jdbcType="DATE" property="birthday"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="userRole" jdbcType="BIGINT" property="userRole"/>
+        <result column="createdBy" jdbcType="BIGINT" property="createdBy"/>
+        <result column="creationDate" jdbcType="TIMESTAMP" property="creationDate"/>
+        <result column="modifyBy" jdbcType="BIGINT" property="modifyBy"/>
+        <result column="modifyDate" jdbcType="TIMESTAMP" property="modifyDate"/>
+        <result column="userRoleName" property="userRoleName"/>
+    </resultMap>
+    <select id="getUserList" resultMap="UserList">
+        select u.*,r.roleName as userRoleName
+        from smbms_user u, smbms_role r
         <trim prefix="WHERE" prefixOverrides="AND |OR">
             and u.userRole = r.id
-            <if test="userCode != null">
-                and userCode = #{userCode}
+            <if test="userCode != null and userCode != ''">
+                and u.userCode = #{userCode}
             </if>
             <if test="userRole != 0">
-                and userRole = #{userRole}
+                and u.userRole = #{userRole}
             </if>
         </trim>
     </select>

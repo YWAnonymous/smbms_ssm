@@ -1,4 +1,4 @@
-package com.zhou.dao;
+package com.zhou.dao.user;
 
 import com.zhou.pojo.User;
 import org.apache.ibatis.annotations.Param;
