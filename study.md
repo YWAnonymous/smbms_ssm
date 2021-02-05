@@ -28,3 +28,8 @@ url=jdbc:mysql://localhost:3306/smbms?useSSL=true&useUnicode=true&characterEncod
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary8US3dx8lueWvf2Vi
 使用@RequestParam("file") MultipartFile file获取前端上送的文件
 ```
+### 加载配置文件
+```markdown
+当context:property-placeholder标签使用了多个，Spring容器只会加载一个。
+当有多个外部文件要加载时使用 <context:property-placeholder location=“classpath:jdbc.properties,classpath:redis.properties” />
+```

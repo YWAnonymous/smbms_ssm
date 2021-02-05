@@ -13,7 +13,7 @@
 
     <!-- 配置整合mybatis -->
     <!-- 1.关联数据库文件 -->
-    <context:property-placeholder location="classpath:jdbc.properties" />
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties" />
     <!--2.配置连接池-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="driverClassName" value="${driver}"/>
