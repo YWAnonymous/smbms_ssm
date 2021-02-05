@@ -14,4 +14,6 @@ public interface UserService {
     public List<User> getUserList(String userCode, int userRole, int currentPageNo, int pageSize);
 
     public int getUserCount(String userCode, int userRole);
+
+    public boolean addNewUser(User user);
 }

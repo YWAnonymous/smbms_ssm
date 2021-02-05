@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp"%>
         <div class="right">
             <div class="location">
                 <strong>你现在所在的位置是:</strong>
@@ -25,7 +25,7 @@
 					 
 					 <input type="hidden" name="pageIndex" value="1"/>
 					 <input	value="查 询" type="submit" id="searchbutton">
-					 <a href="${pageContext.request.contextPath}/WEB-INF/jsp/useradd.jsp" >添加用户</a>
+					 <a href="${pageContext.request.contextPath}/jsp/useradd.jsp" >添加用户</a>
 				</form>
             </div>
             <!--用户-->
@@ -92,5 +92,5 @@
     </div>
 </div>
 
-<%@include file="/WEB-INF/jsp/common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/userlist.js"></script>

@@ -19,4 +19,7 @@ public interface UserDao {
 
     public int getUserCount(@Param("userCode") String userCode,
                             @Param("userRole") int userRole);
+
+
+    public int addUser(User user);
 }

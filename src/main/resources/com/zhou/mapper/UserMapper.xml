@@ -52,4 +52,25 @@
         </trim>
     </select>
 
+
+    <insert id="addUser" parameterType="user" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into smbms_user (userCode, userName, userPassword,  gender, birthday, phone, address, userRole, createdBy,
+            creationDate, modifyBy, modifyDate,userImage)
+        values (
+            #{userCode,jdbcType=VARCHAR},
+            #{userName,jdbcType=VARCHAR},
+            #{userPassword,jdbcType=VARCHAR},
+            #{gender,jdbcType=INTEGER},
+            #{birthday,jdbcType=DATE},
+            #{phone,jdbcType=VARCHAR},
+            #{address,jdbcType=VARCHAR},
+            #{userRole,jdbcType=BIGINT},
+            #{createdBy,jdbcType=BIGINT},
+            #{creationDate,jdbcType=TIMESTAMP},
+            #{modifyBy,jdbcType=BIGINT},
+            #{modifyDate,jdbcType=TIMESTAMP},
+            #{userImage,jdbcType=VARCHAR}
+      );
+    </insert>
+
 </mapper>

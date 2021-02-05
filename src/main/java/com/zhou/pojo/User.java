@@ -1,5 +1,8 @@
 package com.zhou.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 public class User {
@@ -9,7 +12,10 @@ public class User {
     private String userName; //用户名称
     private String userPassword; //用户密码
     private Integer gender;  //性别
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;  //出生日期
+
     private String phone;   //电话
     private String address; //地址
     private long userRole;    //用户角色
@@ -17,6 +23,8 @@ public class User {
     private Date creationDate; //创建时间
     private long modifyBy;     //更新者
     private Date modifyDate;   //更新时间
+    private String userImage;  //图片路径
+    private MultipartFile file;
 
     private Integer age;//年龄
 
@@ -160,5 +168,21 @@ public class User {
 
     public void setModifyDate(Date modifyDate) {
         this.modifyDate = modifyDate;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

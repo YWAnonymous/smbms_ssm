@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/jsp/common/head.jsp"%>
+<%@include file="/jsp/common/head.jsp"%>
 
 <div class="right">
        <div class="location">
@@ -32,7 +32,7 @@
        		</select>
 			
 			 <input	value="查 询" type="submit" id="searchbutton">
-			 <a href="${pageContext.request.contextPath }/WEB-INF/jsp/billadd.jsp">添加订单</a>
+			 <a href="${pageContext.request.contextPath }/jsp/billadd.jsp">添加订单</a>
 		</form>
        </div>
        <!--账单表格 样式和供应商公用-->
@@ -95,5 +95,5 @@
     </div>
 </div>
 
-<%@include file="/WEB-INF/jsp/common/foot.jsp" %>
+<%@include file="/jsp/common/foot.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/billlist.js"></script>

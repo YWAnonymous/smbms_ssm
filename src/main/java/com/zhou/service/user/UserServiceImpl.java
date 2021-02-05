@@ -26,4 +26,14 @@ public class UserServiceImpl implements UserService {
     public int getUserCount(String userCode, int userRole) {
         return userDao.getUserCount(userCode,userRole);
     }
+
+    @Override
+    public boolean addNewUser(User user) {
+        int row = userDao.addUser(user);
+        boolean flag = false;
+        if(row > 0){
+            flag = true;
+        }
+        return flag;
+    }
 }
