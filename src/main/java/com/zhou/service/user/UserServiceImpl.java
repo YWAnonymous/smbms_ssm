@@ -1,10 +1,13 @@
 package com.zhou.service.user;
 
+import com.alibaba.fastjson.JSON;
 import com.zhou.dao.user.UserDao;
 import com.zhou.pojo.User;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,8 +39,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Cacheable(value="aboutUser")
     public User getLoginUser(String userCode) {
-        return userDao.getLoginUser(userCode);
+        User user = userDao.getLoginUser(userCode);
+        return user;
     }
 
     /**
@@ -51,9 +59,11 @@ public class UserServiceImpl implements UserService {
      * 	2).在用来记录aboutUser缓存区间中的缓存数据的key的aboutUser~keys(zset类型)中新添加一个value，
      * 	        值为上面新增数据的key
      */
-    @Cacheable(value="aboutUser")
+
     public List<User> getUserList(String userCode, int userRole,int currentPageNo, int pageSize) {
-        return userDao.getUserList(userCode,userRole,((currentPageNo-1)*pageSize),pageSize);
+        List<User> userList = userDao.getUserList(userCode, userRole, ((currentPageNo - 1) * pageSize), pageSize);
+
+        return userList;
     }
 
     public int getUserCount(String userCode, int userRole) {
@@ -76,4 +86,7 @@ public class UserServiceImpl implements UserService {
         }
         return flag;
     }
+
+
+
 }

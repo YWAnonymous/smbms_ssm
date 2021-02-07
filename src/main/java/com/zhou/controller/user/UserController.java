@@ -55,7 +55,6 @@ public class UserController {
             queryUserRole = Integer.parseInt(userRole);
         }
 
-        System.out.println("=======method=" + method + "=====queryname=" + queryname + "=====queryUserRole=" + queryUserRole);
         // 查询用户总条数
         int totalCount = userService.getUserCount(queryname, queryUserRole);
         //=================分页==============================

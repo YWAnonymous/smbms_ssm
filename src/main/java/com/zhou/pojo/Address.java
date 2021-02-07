@@ -1,8 +1,9 @@
 package com.zhou.pojo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Address {
+public class Address implements Serializable {
     private Long id;
 
     private String contact;

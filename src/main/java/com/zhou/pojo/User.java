@@ -1,11 +1,11 @@
 package com.zhou.pojo;
 
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable {
     private Long id;
 
     private String userCode; //用户编码

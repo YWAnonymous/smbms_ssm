@@ -33,3 +33,11 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary8US3dx8lueWvf2
 当context:property-placeholder标签使用了多个，Spring容器只会加载一个。
 当有多个外部文件要加载时使用 <context:property-placeholder location=“classpath:jdbc.properties,classpath:redis.properties” />
 ```
+
+### 使用redis中问题汇总
+```markdown
+
+1、报错nested exception is org.springframework.core.serializer.support.SerializationFailedException:
+        Failed to serialize object using DefaultSerializer;
+实体类要加上序列化
+```

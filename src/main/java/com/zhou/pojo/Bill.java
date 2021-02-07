@@ -1,9 +1,10 @@
 package com.zhou.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Bill {
+public class Bill implements Serializable {
     private Long id;
 
     private String billCode;
