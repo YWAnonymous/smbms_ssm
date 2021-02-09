@@ -15,9 +15,13 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
 
+
         Object o = session.getAttribute(Constants.USER_SESSION);
-        System.out.println("==============session="+((User)o).getUserName()+"====================");
         if( session == null || o == null){
+            // 拦截器，过滤特殊路径
+            if(request.getRequestURI().contains("/getRoleList.do")){
+                return true;
+            }
             request.getRequestDispatcher("/login.jsp").forward(request,response);
             return false;
         }else {

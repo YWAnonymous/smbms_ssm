@@ -42,8 +42,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Cacheable(value="aboutUser")
+//    @Cacheable(value="aboutUser",key = "#root.methodName")
     public User getLoginUser(String userCode) {
+
+//        redisTemplate.opsForValue().setIfAbsent()
         User user = userDao.getLoginUser(userCode);
         return user;
     }

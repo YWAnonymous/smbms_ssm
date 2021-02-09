@@ -158,4 +158,13 @@ public class UserController {
         response.sendRedirect(request.getContextPath()+"/jsp/user.do?method=query");
     }
 
+    /*
+    测试redis分布式锁
+     */
+    @RequestMapping("/getRoleList.do")
+    @ResponseBody
+    public List<Role> findRoleList(){
+        return roleService.getRoleList();
+    }
+
 }

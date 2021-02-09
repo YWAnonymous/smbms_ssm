@@ -15,19 +15,27 @@
     <!--开启mvc注解支持-->
     <mvc:annotation-driven>
         <!--json处理乱码问题-->
-       <!-- <mvc:message-converters register-defaults="true">
+        <mvc:message-converters register-defaults="true">
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
             </bean>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper">
-                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
-                        <property name="failOnEmptyBeans" value="false"/>
-                    </bean>
+            <!-- 配置Fastjson支持 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                    </list>
                 </property>
             </bean>
-        </mvc:message-converters>-->
-        <mvc:message-converters>
+        </mvc:message-converters>
+<!--        <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -35,7 +43,7 @@
                     </list>
                 </property>
             </bean>
-        </mvc:message-converters>
+        </mvc:message-converters>-->
     </mvc:annotation-driven>
     <!--不扫描静态资源-->
     <mvc:default-servlet-handler/>
